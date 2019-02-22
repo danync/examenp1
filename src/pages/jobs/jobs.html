@@ -1,0 +1,70 @@
+<!--
+  Generated template for the JobsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+      <ion-title style = "background-color: #2F2F2F">
+        <h2 style = "color: white">Trabajo</h2>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding style= "background-color: #D9D9D9">
+  
+    <ion-card>
+      <ion-slides pager>
+        <ion-slide *ngFor = "let img of imgs">
+          <img src = "https://img.segundamano.mx/medium/{{img.path}}">
+        </ion-slide>
+      </ion-slides>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        {{trabajo.ad.subject}}
+        <ion-icon *ngIf = "!fav.existe(trabajo)" name = "heart" item-end (click) = "favoritos(trabajo)"></ion-icon>
+        <ion-icon *ngIf = "fav.existe(trabajo)" name = "heart" color = "danger" item-end (click) = "fav.remove(trabajo)"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <h2 *ngIf = "trabajo.ad.hasOwnProperty('list_price')" style = "color:teal">
+          {{trabajo.ad.list_price.label}}, {{trabajo.ad.list_price.currency}}
+        </h2>
+          <ion-icon name = "share" item-end></ion-icon>
+      </ion-item>
+      <ion-card-content>
+        <p *ngIf = "trabajo.ad.hasOwnProperty('locations')">
+          {{trabajo.ad.locations[0].locations[0].label}}, {{trabajo.ad.locations[0].label}}
+        </p>
+        <p *ngIf = "trabajo.ad.hasOwnProperty('list_time')">
+          Publicado: {{trabajo.ad.list_time.label}}
+       </p>
+        </ion-card-content>
+    </ion-card>
+  
+    <ion-card>
+      <ion-card-header>
+        Descripción 
+      </ion-card-header>
+      <ion-card-content>
+        {{trabajo.ad.body}}
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src = "../assets/imgs/logo.png">
+        </ion-avatar>
+        <h2 *ngIf = "trabajo.ad.hasOwnProperty('user')">
+          {{trabajo.ad.user.account.name}}
+        </h2>
+        <p *ngIf = "trabajo.ad.hasOwnProperty('user')"> 
+          {{trabajo.ad.user.account.since}}
+        </p>
+      </ion-item>
+    </ion-card>
+  
+  </ion-content>
+  

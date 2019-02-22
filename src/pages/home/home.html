@@ -1,14 +1,44 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+    <ion-navbar>
+      <ion-title style = "background-color: #2F2F2F">
+      <h3 style = "color: white">Trabajos</h3>
     </ion-title>
-  </ion-navbar>
-</ion-header>
+    <!-- <ion-buttons start>
+      <button (click) = "favs()" ion-button icon-only>
+        <ion-icon  name = "star" style = "color:whitesmoke"></ion-icon>
+      </button>
+    </ion-buttons> -->
+    <ion-buttons end>
+      <button (click) = "buscar()" ion-button icon-only>
+        <ion-icon  name = "search" style = "color:whitesmoke"></ion-icon>
+      </button>
+    </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding style= "background-color: #D9D9D9">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor = "let trabajo of trabajos" col-6>
+        <ion-card (click) = "verTrabajo(trabajo)">
+          <img *ngIf = "trabajo.ad.hasOwnProperty('thumbnail')"
+              src = "https://img.segundamano.mx/cover/{{trabajo.ad.thumbnail.path}}">
+          <img *ngIf = "!trabajo.ad.hasOwnProperty('thumbnail')"
+              src = "../assets/job.jpg">  
+          <ion-card-content>
+          <p *ngIf = "trabajo.ad.hasOwnProperty('locations')">
+            {{trabajo.ad.locations[0].locations[0].label}}, {{trabajo.ad.locations[0].label}}
+          </p>
+          <h2 *ngIf = "trabajo.ad.hasOwnProperty('list_price')" style = "color:teal">
+              {{trabajo.ad.list_price.label}}, {{trabajo.ad.list_price.currency}}
+          </h2>
+          <p *ngIf = "trabajo.ad.hasOwnProperty('list_time')">
+             Publicado: {{trabajo.ad.list_time.label}}
+          </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

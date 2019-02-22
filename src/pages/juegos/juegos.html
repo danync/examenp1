@@ -1,0 +1,53 @@
+<!--
+  Generated template for the JuegosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title style = "background-color: #2F2F2F">
+    <h3 style = "color: white">Videojuegos</h3>
+  </ion-title>
+  <ion-buttons start>
+    <button (click) = "favs()" ion-button icon-only>
+      <ion-icon  name = "star" style = "color:whitesmoke"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-buttons end>
+    <button (click) = "buscar()" ion-button icon-only>
+      <ion-icon  name = "search" style = "color:whitesmoke"></ion-icon>
+    </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style= "background-color: #D9D9D9">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor = "let producto of productos" col-6>
+        <ion-card (click) = "verProducto(producto)">
+          <img *ngIf = "producto.ad.hasOwnProperty('thumbnail')"
+              src = "https://img.segundamano.mx/cover/{{producto.ad.thumbnail.path}}">
+          <img *ngIf = "!producto.ad.hasOwnProperty('thumbnail')"
+              src = "../assets/videogame.jpg">      
+          <ion-card-content>
+          <h2 *ngIf = "producto.ad.hasOwnProperty('subject')">
+              {{producto.ad.subject}}
+          </h2>
+          <p *ngIf = "producto.ad.hasOwnProperty('locations')">
+            {{producto.ad.locations[0].locations[0].label}}, {{producto.ad.locations[0].label}}
+          </p>
+          <h2 *ngIf = "producto.ad.hasOwnProperty('list_price')" style = "color:teal">
+              {{producto.ad.list_price.label}}, {{producto.ad.list_price.currency}}
+          </h2>
+          <p *ngIf = "producto.ad.hasOwnProperty('list_time')">
+             Publicado: {{producto.ad.list_time.label}}
+          </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
