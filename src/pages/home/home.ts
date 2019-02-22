@@ -44,7 +44,7 @@ export class HomePage {
   }
 
   verTrabajo(trabajo){
-    this.navCtrl.push(this.trabajosPage, {trabajo: trabajo});
+    this.navCtrl.push(this.jobsPage, {trabajo: trabajo});
   }
 
 
